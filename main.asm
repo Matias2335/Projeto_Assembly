@@ -7,6 +7,8 @@ LJMP START
 
 org 0030h
 ; put data in ROM
+
+
 LANCHE1:
 DB "1. X-BACON"
 DB 00h ;Marca null no fim da String
@@ -130,7 +132,7 @@ MOV A, #00h
 ACALL posicionaCursor
 MOV DPTR,#BOLO            ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
-MOV A, #43h
+MOV A, #44h
 ACALL posicionaCursor
 MOV DPTR,#PRECO6            ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
@@ -140,7 +142,7 @@ MOV A, #01h
 ACALL posicionaCursor
 MOV DPTR,#REFRI            ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
-MOV A, #45h
+MOV A, #44h
 ACALL posicionaCursor
 MOV DPTR,#PRECO7            ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
@@ -150,7 +152,7 @@ MOV A, #04h
 ACALL posicionaCursor
 MOV DPTR,#SUCO           ;endereço inicial de memória da String Display LCD
 ACALL escreveStringROM
-MOV A, #43h
+MOV A, #44h
 ACALL posicionaCursor
 MOV DPTR,#PRECO8            ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
@@ -160,7 +162,7 @@ MOV A, #01h
 ACALL posicionaCursor
 MOV DPTR,#ENERGETICO            ;endereço inicial de memória da String Display LCD
 ACALL escreveStringROM
-MOV A, #45h
+MOV A, #44h
 ACALL posicionaCursor
 MOV DPTR,#PRECO9           ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
