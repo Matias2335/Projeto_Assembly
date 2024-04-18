@@ -1,0 +1,1 @@
+O nosso projeto ele tem como objetivo ser um caixa de atendimento de lanchonete , onde mostra os pedidos e os valores do produto mostrando tudo no LCD, logo apos exibir todos os produtos o cliente conseguira escolher o pedido no "KEYPAD",todos os pedidos armazenados e no final mostrar o valor total da compra do cliente e o itens escolhidos 
