@@ -10,30 +10,64 @@ org 0030h
 LANCHE1:
 DB "1. X-BACON"
 DB 00h ;Marca null no fim da String
+PRECO1:
+DB "R$ 13.00"
+DB 00H
+
 LANCHE2:
-DB "X-SALADA"
+DB "2. X-SALADA"
 DB 00h ;Marca null no fim da String
+PRECO2:
+DB "R$ 9.00"
+DB 00H
+
 LANCHE3:
-DB "X-FRANGO"
+DB "3. X-FRANGO"
 DB 00h ;Marca null no fim da String
-; Adicione quantos outros lanches desejar
+PRECO3:
+DB "R$ 12.00"
+DB 00H
+
 LANCHE4:
-DB "X-EGG"
+DB "4. X-EGG"
 DB 00h
+PRECO4:
+DB "R$ 11.00"
+DB 00H
+
 SALGADO:
-DB "SALGADO"
+DB "5. SALGADO"
 DB 00H
+PRECO5:
+DB "R$ 7.00"
+DB 00H
+
 BOLO:
-DB "BOLO DE POTE"
+DB "6. BOLO DE POTE"
 DB 00H
+PRECO6:
+DB "R$ 8.00"
+DB 00H
+
 REFRI:
-DB "REFRIGERANTE"
+DB "7. REFRIGERANTE"
 DB 00H
+PRECO7:
+DB "R$ 7.00"
+DB 00H
+
 SUCO:
-DB "SUCO"
+DB "8. SUCO"
 DB 00H
+PRECO8:
+DB "R$ 4.00"
+DB 00H
+
 ENERGETICO:
-DB "ENERGETICO"
+DB "9. ENERGETICO"
+DB 00H
+PRECO9:
+DB "R$ 10.00"
 DB 00H
 ;MAIN
 org 0100h
@@ -42,21 +76,33 @@ START:
 main:
 ACALL lcd_init
 
-MOV A, #02h
+MOV A, #03h
 ACALL posicionaCursor
 MOV DPTR,#LANCHE1            ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
-ACALL clearDisplay
-
-MOV A, #04h
+MOV A, #44h
 ACALL posicionaCursor
-MOV DPTR,#LANCHE2            ;endereço inicial de memória da String Display LCD
+MOV DPTR,#PRECO1            ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
 ACALL clearDisplay
 
-MOV A, #04h
+MOV A, #02h
+ACALL posicionaCursor
+MOV DPTR,#LANCHE2            ;endereço inicial de memória da String Display LCD
+ACALL escreveStringROM
+MOV A, #44h
+ACALL posicionaCursor
+MOV DPTR,#PRECO2            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
+ACALL clearDisplay
+
+MOV A, #02h
 ACALL posicionaCursor
 MOV DPTR,#LANCHE3            ;endereço inicial de memória da String Display LCD
+ACALL escreveStringROM
+MOV A, #43h
+ACALL posicionaCursor
+MOV DPTR,#PRECO3            ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
 ACALL clearDisplay
 
@@ -64,35 +110,59 @@ MOV A, #04h
 ACALL posicionaCursor
 MOV DPTR,#LANCHE4            ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
+MOV A, #44h
+ACALL posicionaCursor
+MOV DPTR,#PRECO4            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
+ACALL clearDisplay
+
+MOV A, #02h
+ACALL posicionaCursor
+MOV DPTR,#SALGADO           ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
+MOV A, #43h
+ACALL posicionaCursor
+MOV DPTR,#PRECO5            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
+ACALL clearDisplay
+
+MOV A, #00h
+ACALL posicionaCursor
+MOV DPTR,#BOLO            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
+MOV A, #43h
+ACALL posicionaCursor
+MOV DPTR,#PRECO6            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
+ACALL clearDisplay
+
+MOV A, #01h
+ACALL posicionaCursor
+MOV DPTR,#REFRI            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
+MOV A, #45h
+ACALL posicionaCursor
+MOV DPTR,#PRECO7            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
 ACALL clearDisplay
 
 MOV A, #04h
 ACALL posicionaCursor
-MOV DPTR,#SALGADO           ;endereço inicial de memória da String FEI
-ACALL escreveStringROM
-ACALL clearDisplay
-
-MOV A, #02h
-ACALL posicionaCursor
-MOV DPTR,#BOLO            ;endereço inicial de memória da String FEI
-ACALL escreveStringROM
-ACALL clearDisplay
-
-MOV A, #02h
-ACALL posicionaCursor
-MOV DPTR,#REFRI            ;endereço inicial de memória da String FEI
-ACALL escreveStringROM
-ACALL clearDisplay
-
-MOV A, #06h
-ACALL posicionaCursor
 MOV DPTR,#SUCO           ;endereço inicial de memória da String Display LCD
 ACALL escreveStringROM
+MOV A, #43h
+ACALL posicionaCursor
+MOV DPTR,#PRECO8            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
 ACALL clearDisplay
 
-MOV A, #03h
+MOV A, #01h
 ACALL posicionaCursor
 MOV DPTR,#ENERGETICO            ;endereço inicial de memória da String Display LCD
+ACALL escreveStringROM
+MOV A, #45h
+ACALL posicionaCursor
+MOV DPTR,#PRECO9           ;endereço inicial de memória da String FEI
 ACALL escreveStringROM
 ACALL clearDisplay
 JMP main
