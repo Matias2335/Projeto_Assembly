@@ -7,7 +7,13 @@ LJMP START
 
 org 0030h
 ; put data in ROM
+ENTRADA:
+DB "SEJA BEM-VINDO"
+DB 00H
 
+MCFEI:
+DB "AO MCFEI"
+DB 00H
 
 LANCHE1:
 DB "1. X-BACON"
@@ -77,6 +83,16 @@ START:
 
 main:
 ACALL lcd_init
+
+MOV A, #01h
+ACALL posicionaCursor
+MOV DPTR,#ENTRADA            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
+MOV A, #44h
+ACALL posicionaCursor
+MOV DPTR,#MCFEI            ;endereço inicial de memória da String FEI
+ACALL escreveStringROM
+ACALL clearDisplay
 
 MOV A, #03h
 ACALL posicionaCursor
