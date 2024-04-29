@@ -8,6 +8,7 @@ org 0030h
 Exibir:
 db "13,00"
 db 00h
+mov a, #13
 
 Exibir2:
 db "9,00"
@@ -67,41 +68,47 @@ ROTINA:
   CJNE A, #'1',proximo
   MOV DPTR,#Exibir
   ACALL escreveStringROM
-  ;ACALL clearDisplay
+  ACALL clearDisplay
   proximo:
   CJNE A, #'2',proximo2
   MOV DPTR,#Exibir2
   ACALL escreveStringROM
-  ;ACALL clearDisplay
+  ACALL clearDisplay
   proximo2:
   CJNE A, #'3',proximo3
   MOV DPTR,#Exibir3
   ACALL escreveStringROM
-  ;ACALL clearDisplay
+  ACALL clearDisplay
   proximo3:
   CJNE A, #'4',proximo4
   MOV DPTR,#Exibir4
   ACALL escreveStringROM
+ 	ACALL clearDisplay
   proximo4:
   CJNE A, #'5',proximo5
   MOV DPTR,#Exibir5
   ACALL escreveStringROM
+	 ACALL clearDisplay
   proximo5:
   CJNE A, #'6',proximo6
   MOV DPTR,#Exibir6
   ACALL escreveStringROM
+ ACALL clearDisplay
   proximo6:
   CJNE A, #'7',proximo7
   MOV DPTR,#Exibir7
   ACALL escreveStringROM
+ ACALL clearDisplay
   proximo7:
   CJNE A, #'8',proximo8
   MOV DPTR,#Exibir8
   ACALL escreveStringROM
+ ACALL clearDisplay
   proximo8:
   CJNE A, #'9',proximo9
   MOV DPTR,#Exibir9
   ACALL escreveStringROM
+ ACALL clearDisplay
   proximo9:
   CLR F0
   JMP ROTINA
@@ -124,7 +131,7 @@ finish2:
 
 
 leituraTeclado:
-  MOV R0, #0			; clear R0 - the first key is key0
+  MOV R0, #0			
 
   ; scan row0
   MOV P0, #0FFh	
@@ -317,25 +324,28 @@ retornaCursor:
 
 ;Limpa o display
 clearDisplay:
-  CLR RS	
-  CLR P1.7		; |
-  CLR P1.6		; |
-  CLR P1.5		; |
-  CLR P1.4		; | high nibble set
+  CLR RS    
+CLR P1.7        ; |
+CLR P1.6        ; |
+CLR P1.5        ; |
+CLR P1.4        ; | high nibble set
 
-  SETB EN		; |
-  CLR EN		; | negative edge on E
+SETB EN        ; |
+CLR EN        ; | negative edge on E
 
-  CLR P1.7		; |
-  CLR P1.6		; |
-  CLR P1.5		; |
-  SETB P1.4		; | low nibble set
+CLR P1.7        ; |
+CLR P1.6        ; |
+CLR P1.5        ; |
+SETB P1.4        ; | low nibble set
 
-  SETB EN		; |
-  CLR EN		; | negative edge on E
+SETB EN        ; |
+CLR EN        ; | negative edge on E
 
-  CALL delay		; wait for BF to clear
-  RET
+MOV R6, #40
+rotC:
+CALL delay        ; wait for BF to clear
+DJNZ R6, rotC
+RET
 
 
 delay:
