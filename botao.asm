@@ -8,7 +8,6 @@ org 0030h
 Exibir:
 db "13,00"
 db 00h
-mov a, #13
 
 Exibir2:
 db "9,00"
@@ -38,7 +37,6 @@ db 00h
 
 
 
-
 START:
 
   MOV 40H, #'#' 
@@ -52,14 +50,15 @@ START:
   MOV 48H, #'4'
   MOV 49H, #'3'
   MOV 4AH, #'2'
-  MOV 4BH, #'1'	  
+  MOV 4BH, #'1'
+
 
 MAIN:
   ACALL lcd_init
 ROTINA:
   ACALL leituraTeclado
   JNB F0, ROTINA   ;if F0 is clear, jump to ROTINA
-  MOV A, #07h
+  MOV A, #05h
   ACALL posicionaCursor	
   MOV A, #40h
   ADD A, R0
@@ -67,49 +66,82 @@ ROTINA:
   MOV A, @R0
   CJNE A, #'1',proximo
   MOV DPTR,#Exibir
+	MOV 20H, #13
   ACALL escreveStringROM
   ACALL clearDisplay
   proximo:
   CJNE A, #'2',proximo2
   MOV DPTR,#Exibir2
+	MOV 21H, #9
   ACALL escreveStringROM
   ACALL clearDisplay
   proximo2:
   CJNE A, #'3',proximo3
   MOV DPTR,#Exibir3
+	MOV 22H, #12
   ACALL escreveStringROM
   ACALL clearDisplay
   proximo3:
   CJNE A, #'4',proximo4
   MOV DPTR,#Exibir4
+	MOV 23H, #11
   ACALL escreveStringROM
  	ACALL clearDisplay
   proximo4:
   CJNE A, #'5',proximo5
   MOV DPTR,#Exibir5
+	MOV 24H, #7
   ACALL escreveStringROM
 	 ACALL clearDisplay
   proximo5:
   CJNE A, #'6',proximo6
   MOV DPTR,#Exibir6
+	MOV 25H, #8
   ACALL escreveStringROM
  ACALL clearDisplay
   proximo6:
   CJNE A, #'7',proximo7
   MOV DPTR,#Exibir7
+	MOV 26H, #7
   ACALL escreveStringROM
  ACALL clearDisplay
   proximo7:
   CJNE A, #'8',proximo8
   MOV DPTR,#Exibir8
+	MOV 27H, #4
   ACALL escreveStringROM
  ACALL clearDisplay
   proximo8:
   CJNE A, #'9',proximo9
   MOV DPTR,#Exibir9
+	MOV 28H, #10
   ACALL escreveStringROM
  ACALL clearDisplay
   proximo9:
+  CJNE A, #'0',proximo10
+	MOV A , #0H
+	ADD A, 20H
+	ADD A, 21H
+	ADD A, 22H
+	ADD A, 23H
+	ADD A, 24H
+	ADD A, 25H
+	ADD A, 26H
+	ADD A, 27H
+	ADD A, 28H 
+	MOV 29H , A
+	MOV B, #10
+	DIV AB                                     ; divide por 10 para extrair a dezena.
+	ADD A, #30h
+	ACALl sendCharacter
+	MOV A, B
+	ADD A, #30h
+	ACALL sendCharacter
+
+	ACALL escreveStringROM
+	 ACALL clearDisplay
+	proximo10:          
+	
   CLR F0
   JMP ROTINA
 
@@ -126,7 +158,6 @@ loop:
   JMP loop		; repeat
 finish2:
   RET
-
 
 
 
@@ -193,6 +224,8 @@ lcd_init:
   CLR EN		
 
   CALL delay	
+
+
 
 
 ; entry mode set
