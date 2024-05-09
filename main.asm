@@ -6,34 +6,37 @@ org 0000h
 
 org 0030h
 Exibir:
-db "13,00"
+db "PEDIDO 1"
 db 00h
 
 Exibir2:
-db "9,00"
+db "PEDIDO 2"
 db 00h
 
 Exibir3:
-db "12,00"
+db "PEDIDO 3"
 db 00h
 Exibir4:
-db "11,00"
+db "PEDIDO 4"
 db 00h
 Exibir5:
-db "7,00"
+db "PEDIDO 5"
 db 00h
 Exibir6:
-db "8,00"
+db "PEDIDO 6"
 db 00h
 Exibir7:
-db "7,00"
+db "PEDIDO 7"
 db 00h
 Exibir8:
-db "4,00"
+db "PEDIDO 8"
 db 00h
 Exibir9:
-db "10,00"
+db "PEDIDO 9"
 db 00h
+Aguardando:
+db "AGUARDE....."
+DB 00H
 
 ENTRADA:
 DB "SEJA BEM-VINDO"
@@ -45,21 +48,21 @@ DB 00H
 
 LANCHE1:
 DB "1. X-BACON"
-DB 00h ;Marca null no fim da String
+DB 00h 
 PRECO1:
 DB "R$ 13.00"
 DB 00H
 
 LANCHE2:
 DB "2. X-SALADA"
-DB 00h ;Marca null no fim da String
+DB 00h 
 PRECO2:
 DB "R$ 9.00"
 DB 00H
 
 LANCHE3:
 DB "3. X-FRANGO"
-DB 00h ;Marca null no fim da String
+DB 00h 
 PRECO3:
 DB "R$ 12.00"
 DB 00H
@@ -104,6 +107,10 @@ DB "9. ENERGETICO"
 DB 00H
 PRECO9:
 DB "R$ 10.00"
+DB 00H
+
+SIFRAO:
+DB "R$"
 DB 00H
 
 START:
@@ -302,13 +309,15 @@ ROTINA:
         MOV B, #10
         DIV AB                                     ; divide por 10 para extrair a dezena.
         ADD A, #30h
-        ACALl sendCharacter
+       ACALL sendCharacter
         MOV A, B
         ADD A, #30h
-        ACALL sendCharacter
+        ACALL sendCharacter 
 
-        ;ACALL escreveStringROM
          ACALL clearDisplay
+		MOV DPTR,#Aguardando
+	 ACALL escreveStringROM
+ 	ACALL clearDisplay
         proximo10:          
 
   CLR F0
