@@ -16,6 +16,8 @@ Outra imagem escolhendo o pedido 8 do menu
 
 <image src = "4_AS.png" height="500">
 
-Aqui mostra o extrato dos pedidos selecionados
+Aqui mostra o extrato dos pedidos selecionado ao clicar no "botao 0"
 
 <image src = "5_AS.png" height="500">
+
+
