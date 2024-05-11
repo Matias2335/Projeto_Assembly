@@ -22,6 +22,6 @@ Aqui mostra o extrato dos pedidos selecionado ao clicar no "botao 0"
 
 Aqui é o fluxograma
 
-<image src = "Fluxograma (1).png" height="500">
+<image src = "Fluxograma (2).png" height="500">
 
 Replit: https://replit.com/join/bhvxzfdqex-guilhermematia2
